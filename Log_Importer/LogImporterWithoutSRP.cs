@@ -10,7 +10,7 @@ namespace Log_Importer
             string[] logFiles = GetLogFiles();
             foreach (var logFile in logFiles)
             {
-                var logEntries = ReadLogEntries();
+                var logEntries = ReadLogEntries(logFile);
                 ShowLogEntries(logEntries);
             }
         }
@@ -29,7 +29,7 @@ namespace Log_Importer
             throw new NotImplementedException();
         }
 
-        private IEnumerable<string> ReadLogEntries()
+        private IEnumerable<string> ReadLogEntries(string logFile)
         {
             throw new NotImplementedException();
         }
