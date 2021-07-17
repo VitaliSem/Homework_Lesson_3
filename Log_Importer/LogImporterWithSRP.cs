@@ -5,7 +5,11 @@ namespace Log_Importer
 {
     class LogImporterWithSRP
     {
+        public delegate void LogHandler (LogEntry logEntry);
+        public event LogHandler Notify;
+
         private readonly ICollection<string> _logFiles;
+        private readonly LogEntryParser _parser = new LogEntryParser();
 
         public LogImporterWithSRP(ICollection<string> logFiles)
         {
@@ -21,23 +25,27 @@ namespace Log_Importer
             }
         }
 
+        private IEnumerable<string> ReadLogEntries(string logFile)
+        {
+            throw new NotImplementedException();
+        }
+
         private void ShowLogEntries(IEnumerable<string> logEntries)
         {
             foreach (var entry in logEntries)
             {
                 var logUnit = ParseLogEntry(entry);
-                Console.WriteLine(logUnit.ToString());
+                Notify?.Invoke(logUnit);
             }
         }
 
-        private object ParseLogEntry(string entry)
+        private LogEntry ParseLogEntry(string entry)
         {
-            throw new NotImplementedException();
+            if (_parser.TryParse(entry, out LogEntry logEntry))
+                return logEntry;
+
+            return null;
         }
 
-        private IEnumerable<string> ReadLogEntries(string logFile)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
