@@ -1,0 +1,8 @@
+#Ignore all files in the 'bin' repository
+bin/
+
+#Ignore all files in the 'obj' repository
+obj/
+
+#Ignore .editorconfig file
+.editorconfig
