@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Log_Importer
+{
+    class LogImporterWithSRP
+    {
+        private readonly ICollection<string> _logFiles;
+
+        public LogImporterWithSRP(ICollection<string> logFiles)
+        {
+            _logFiles = logFiles;
+        }
+
+        public void ImportLogs()
+        {
+            foreach (var logFile in _logFiles)
+            {
+                var logEntries = ReadLogEntries(logFile);
+                ShowLogEntries(logEntries);
+            }
+        }
+
+        private void ShowLogEntries(IEnumerable<string> logEntries)
+        {
+            foreach (var entry in logEntries)
+            {
+                var logUnit = ParseLogEntry(entry);
+                Console.WriteLine(logUnit.ToString());
+            }
+        }
+
+        private object ParseLogEntry(string entry)
+        {
+            throw new NotImplementedException();
+        }
+
+        private IEnumerable<string> ReadLogEntries(string logFile)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
