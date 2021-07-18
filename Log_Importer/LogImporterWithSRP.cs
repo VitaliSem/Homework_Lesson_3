@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Log_Importer
 {
@@ -27,7 +28,18 @@ namespace Log_Importer
 
         private IEnumerable<string> ReadLogEntries(string logFile)
         {
-            throw new NotImplementedException();
+            List<string> list = new List<string>();
+            using (StreamReader file = File.OpenText(logFile))
+            {
+                
+                string line;
+                while((line = file.ReadLine()) != null)
+                {
+                    list.Add(line);
+                }
+            }
+
+            return list;
         }
 
         private void ShowLogEntries(IEnumerable<string> logEntries)
