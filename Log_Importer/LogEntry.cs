@@ -15,4 +15,13 @@ namespace Log_Importer
             _message = message;
         }
     }
+
+    public class LogExceptionEntry : LogEntry
+    {
+        private readonly Exception _exception;
+        public LogExceptionEntry(DateTime dateTime, string severity, string message, Exception exception) : base (dateTime, severity, message)
+        {
+            _exception = exception;
+        }
+    }
 }
